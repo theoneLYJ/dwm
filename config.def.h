@@ -39,7 +39,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+static const char *tags[] = { "", "", "3", "4", "5", "6", "7", "󰘅", "" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -48,7 +48,8 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ NULL,       "qq",       NULL,       1 << 7,       0,           -1 },
+	{ "nekoray",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -59,8 +60,8 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "T",      tile },    /* first entry is default */
-	{ "M",			magicgrid },
+	{ "󰕴",      tile },    /* first entry is default */
+	{ "󰕰",			magicgrid },
 };
 
 /* key definitions */
@@ -78,11 +79,14 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *roficmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = roficmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,												XK_Tab,    focusstack,     {.i = +1} },  /* super tab          |  本tag内切换聚焦窗口 */
 	{ MODKEY|ShiftMask,    					XK_Tab,    focusstack,     {.i = -1} },  /* super shift tab    |  本tag内切换聚焦窗口 */
 	
