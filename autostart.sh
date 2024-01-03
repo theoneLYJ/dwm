@@ -4,7 +4,8 @@ source ~/.profile
 settings() {
     [ $1 ] && sleep $1
     xset -b &                                   # 关闭蜂鸣器
-		feh --randomize --bg-fill ~/Pictures/wallpaper/*.png
+		feh --randomize --bg-fill ~/Pictures/wallpaper/*.png &
+		$HOME/.screenlayout/default.sh
 }
 
 daemons() {

@@ -12,13 +12,14 @@ update() {
 
 refresh() {
     source $DWM/barscripts/temp
-    xsetroot -name "$_cpu$_mem$_date$_bat"
+    xsetroot -name "$_cpu$_mem$_date$_vol$_bat"
 }
 
 cron() {
   while true; do update cpu;  refresh; sleep 300; done &
-  while true; do update date; refresh; sleep 5;   done &
+  while true; do update vol;  refresh; sleep 20; done &
   while true; do update bat;  refresh; sleep 300; done &
+  while true; do update date; refresh; sleep 5;   done &
 }
 
 case $1 in
